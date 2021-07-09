@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import axios from 'axios';
 
 const Login = (props)=>{
 
@@ -22,6 +23,18 @@ const Login = (props)=>{
 
     const signIn=async(e)=>{
         e.preventDefault();
+
+        try{
+            const response = await axios.post('http://localhost:3002/api/user/login',{
+                email:email,
+                password:password,
+            },);
+
+            console.log(response);
+        }catch(error){
+            console.log(error);
+        }
+
         console.log(email);
         console.log(password);
         setPassword('');
@@ -30,6 +43,19 @@ const Login = (props)=>{
 
     const signUp = async(e)=>{
         e.preventDefault();
+
+        try{
+            const response = await axios.post('http://localhost:3002/api/user/register',{
+                email:email,
+                password:password,
+                name:name,
+            },);
+            console.log(response);
+
+        }catch(error){
+            console.log(error);
+        }
+
         console.log(email);
         console.log(password);
         console.log(name);
